@@ -4,16 +4,6 @@ from selenium.webdriver.common.by import By
 
 link = "http://selenium1py.pythonanywhere.com/"
 
-
-@pytest.fixture(scope="function")
-def browser():
-    print("\nstart browser for test..")
-    browser = webdriver.Chrome()
-    yield browser
-    print("\nquit browser..")
-    browser.quit()
-
-
 class TestMainPage1():
 
     def test_guest_should_see_login_link(self, browser):
@@ -28,3 +18,9 @@ class TestMainPage1():
     def test_guest_should_see_search_button_on_the_main_page(self, browser):
         browser.get(link)
         browser.find_element(By.CSS_SELECTOR, "button.favorite")
+        '''Когда баг починят, мы это узнаем,так как теперь тест будет отмечен как XPASS (“unexpectedly passing” — неожиданно проходит). 
+        После этого маркировку xfail для теста можно удалить. Кстати, к маркировке xfail можно добавлять параметр reason. 
+        Чтобы увидеть это сообщение в консоли, при запуске нужно добавлять параметр pytest -rx.'''
+
+        # запуск для просмотра тестов с xpassed - pytest -rX -v test_fixture10b.py
+
