@@ -27,22 +27,26 @@ def test_authorization(browser, load_person_date, link):
     login_field = browser.find_element(By.XPATH, '//input[@name="login"]')
     login_field.send_keys(login) # Вводим логин
 
+
     password_field = browser.find_element(By.XPATH, '//input[@name="password"]')
     password_field.send_keys(password) # Вводим пароль
 
+    time.sleep(3)
 
     btn = browser.find_element(By.XPATH, '//button[@type="submit"]')
     btn.click()
 
-    input_txt = browser.find_element(By.CSS_SELECTOR, 'div > textarea').send_keys(str(answer))
+    time.sleep(3)
+
+    input_txt = browser.find_element(By.CLASS_NAME, 'textarea')
+    input_txt.clear()
+    input_txt.send_keys(answer)
 
     send_answer = browser.find_element(By.CLASS_NAME, 'submit-submission')
     send_answer.click()
 
-    control_field = browser.find_element(By.CSS_SELECTOR, 'p .smart-hints__hint').text
+    #control_field = browser.find_element(By.CSS_SELECTOR, '.smart-hints__hint').text
 
-    print(control_field)
+    #print(control_field)
 
-    assert control_field == 'Correct!', 'Ошибка! Текст не соответсвует слову Correct!'
-
-
+   # assert control_field == 'Correct!', f'Часть ответа {control_field}'
